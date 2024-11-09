@@ -1,0 +1,7 @@
+*cris.config
+*cris.qna
+*example.py
+*messages.txt
+*__pycache__/
+*TODO
+*.jinja*

@@ -73,11 +73,16 @@ class QnAModel:
 
     def getQnA_ID(self, question: str) -> str:
         response = self.getJSONAnswer(question)
-        qnaItem: QnA_Item = self.qna[response[self.ANSWER_KEY]["question_number"]]
-        return qnaItem.ID
+        if response["Is_answer_in_QnA"]:
+            qnaItem: QnA_Item = self.qna[response[self.ANSWER_KEY]["question_number"]]
+            return qnaItem.ID
+        else:
+            return ""
     
     def getAnswer(self, question: str) -> str:
         ID = self.getQnA_ID(question)
+        if ID == "":
+            return ""
         for qnaItem in self.qna:
             if qnaItem.ID == ID:
                 return qnaItem.answer
